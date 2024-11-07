@@ -6,13 +6,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
     <style>
-        nav:has(.scrolled) {
-            background-color: rgb(255, 255, 255);
-            color: black;
-            transition: background-color 0.3s ease;
-
+        nav {
+            background-color: transparent;
+            color: white;
+            transition: all 0.3s ease;
         }
-             .nav-item {
+
+        nav:hover {
+            background-color: white;
+            color: black;
+        }
+
+        nav.scrolled {
+            background-color: white;
+            color: black;
+        }
+
+        nav.scrolled svg {
+            fill: black !important;
+        }
+
+        nav:hover svg {
+            fill: black !important;
+        }
+
+        nav svg {
+            fill: white;
+            transition: fill 0.3s ease;
+        }
+
+        .nav-item {
             position: relative;
         }
 
@@ -294,7 +317,7 @@
         </div>
 
         <div class="col-span-5 relative text-center flex justify-center overflow-hidden rounded-lg h-[400px] w-[550px]">
-            <img class="object-cover rounded-lg transition-transform duration-700 transform hover:scale-125" src="https://visitsaaremaa.ee/wp-content/uploads/2024/10/N9A6490-copy-scaled.jpg" alt="">
+            <img class="object-cover rounded-lg transition-transform duration-700 transform hover:scale-125" src="https://visitsaaremaa.ee/wp-content/uploads/2024/11/55A8752-scaled.jpg" alt="">
             <div class="absolute w-full bottom-0 mb-10 left-0 text-white">
                 <p class="text-[32px]"><b>Saaremaa terviseveed 200</b></p>
             </div>
@@ -312,38 +335,39 @@
                 <p class="text-[32px]"><b>Saarte sündmused</b></p>
             </div>
         </div>
-        
-        <div class="col-span-5 relative text-center flex justify-center overflow-hidden rounded-lg h-[600px] w-[1500px]">
-            <img class="object-cover rounded-lg w-[80%] h-[80%] transition-transform duration-700 transform hover:scale-110" 
-                src="https://visitsaaremaa.ee/wp-content/uploads/2022/12/Liitu-visit-saaremaa-uudiskirjaga-scaled.jpg" alt="">
-            <div class="absolute top-16 text-center">
-                <p class="text-white text-[32px] font-bold drop-shadow-md mb-4">Sinu nimi</p>
-                <input type="text" placeholder="" 
-                    class="bg-white text-black text-center rounded-lg px-4 py-2 w-[200px] outline-none shadow-md mb-6">
-                <p class="text-white text-[32px] font-bold drop-shadow-md mb-4">Sinu e-mail</p>
-                <input type="text" placeholder="" 
-                    class="bg-white text-black text-center rounded-lg px-4 py-2 w-[200px] outline-none shadow-md">
-                    <div class="flex items-center justify-center mt-4">
-                        <input type="checkbox" id="data-consent" class="w-5 h-5 mr-2">
-                        <label for="data-consent" class="text-white text-[16px]">Olen tutvunud Andmetöötluse põhimõtetega</label>
+            <div class="col-span-10 col-start-2 relative text-center flex justify-center overflow-hidden rounded-lg h-[400px] w-[1150px] mx-auto -ml-0.5">
+                <img class="object-cover w-full rounded-lg transition-transform duration-700 transform hover:scale-110 brightness-50" 
+                    src="https://visitsaaremaa.ee/wp-content/uploads/2022/12/Liitu-visit-saaremaa-uudiskirjaga-scaled.jpg" alt="">
+                <div class="absolute top-8 text-center">
+                    <p class="text-white text-[32px] font-bold drop-shadow-md mb-4">Sinu nimi</p>
+                    <input type="text" placeholder="" 
+                        class="bg-white text-black text-center rounded-lg px-4 py-2 w-[200px] outline-none shadow-md mb-6">
+                    <p class="text-white text-[32px] font-bold drop-shadow-md mb-4">Sinu e-mail</p>
+                    <input type="text" placeholder="" 
+                        class="bg-white text-black text-center rounded-lg px-4 py-2 w-[200px] outline-none shadow-md">
+                    <div class="flex flex-col items-center justify-center mt-4">
+                        <div class="flex items-center mb-4">
+                            <input type="checkbox" id="data-consent" class="w-5 h-5 mr-2">
+                            <label for="data-consent" class="text-white text-[14px]">Olen tutvunud Andmetöötluse põhimõtetega</label>
+                        </div>
+                        <button class="bg-[#EA5477] text-white px-4 py-2 rounded-lg transition-colors">
+                            Liitun uudiskirjaga
+                        </button>
+                        <a>
+                            Liitu Uudiskirjaga
+                        </a>
                     </div>
+                </div>
             </div>
-            
-        </div>
+
         
-        
-        
-        
-        
-        
-        
-        </div>
+         </div>
         </div>
 
         <script>
             const nav = document.getElementById('nav');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 510) {
+                if (window.scrollY > 50) {
                     nav.classList.add('scrolled');
                 } else {
                     nav.classList.remove('scrolled');
