@@ -77,6 +77,16 @@
         .dropdown-menu a:hover::after {
             transform: scaleX(1);
         }
+
+        #carousel.fade-out {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #carousel {
+            background-attachment: fixed;
+            background-size: cover;
+        }
     </style>
     <title>Visit Saaremaa</title>
 </head>
@@ -336,14 +346,27 @@
             </div>
         </div>
     </nav>
-    <section class="overflow-hidden bg-cover bg-center h-[600px] relative flex items-center justify-center"
-        style="background-image: url('https://visitsaaremaa.ee/wp-content/uploads/2024/10/Lenda-peale.-mitte-ule.png');">
-        <div class="text-white text-center" style="transform: translateX(-288px) translateY(-42px)">
-            <h1 class="text-6xl font-bold relative">
+    <section id="carousel"
+        class="overflow-hidden bg-cover bg-center h-[600px] relative flex items-center justify-center transition-all duration-1000 ease-in-out"
+        style="background-image: url('https://visitsaaremaa.ee/wp-content/uploads/2024/10/Lenda-peale.-mitte-ule.png'); background-attachment: fixed; background-size: cover;">
+        <div class="text-white text-center" style="transform: translateX(-288px) translateY(-42px); z-index: 10;">
+            <h1 id="carousel-text" class="text-6xl font-bold relative">
                 <span>Lenda peale. Mitte</span><br>
                 <span class="absolute left-0 mt-2">üle.</span>
                 <h4 class="absolute left-0 mt-20">Vaata lisaks.</h4>
             </h1>
+        </div>
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+            <button onclick="showImage(0)"
+                class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+            <button onclick="showImage(1)"
+                class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+            <button onclick="showImage(2)"
+                class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+            <button onclick="showImage(3)"
+                class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+            <button onclick="showImage(4)"
+                class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
         </div>
     </section>
     <div class="grid grid-cols-12 mx-auto max-w-screen-xl mt-12">
@@ -498,6 +521,55 @@
                 nav.classList.remove('scrolled');
             }
         });
+    </script>
+    <script>
+        const images = [
+            {
+                url: "https://visitsaaremaa.ee/wp-content/uploads/2024/10/Lenda-peale.-mitte-ule.png",
+                text: "Lenda peale. Mitte<br><span class='absolute left-0 mt-2'>üle.</span>"
+            },
+            {
+                url: "https://visitsaaremaa.ee/wp-content/uploads/2020/12/Saaremaa-sundmused-2021-header-scaled.jpg",
+                text: "Sündmused"
+            },
+            {
+                url: "https://visitsaaremaa.ee/wp-content/uploads/2023/01/3-paivaa-saarenmaallaa-2023-scaled.jpg",
+                text: "Transport"
+            },
+            {
+                url: "https://visitsaaremaa.ee/wp-content/uploads/2020/05/majutuse-header-scaled.jpg",
+                text: "Majutus"
+            },
+            {
+                url: "https://visitsaaremaa.ee/wp-content/uploads/2022/12/Naba-1.jpg",
+                text: "Söök"
+            }
+        ];
+
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const carouselText = document.getElementById('carousel-text');
+
+        function updateBackgroundImage(index) {
+            // Add a fade-out effect
+            carousel.classList.add('fade-out');
+            
+            setTimeout(() => {
+                carousel.style.backgroundImage = `url(${images[index].url})`;
+                carouselText.innerHTML = images[index].text; // Update the text
+                carousel.classList.remove('fade-out');
+            }, 1000); // Match this duration with the CSS transition duration
+            currentIndex = index;
+        }
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateBackgroundImage(currentIndex);
+        }, 7000); // Increase the interval time to 7000ms (7 seconds)
+
+        function showImage(index) {
+            updateBackgroundImage(index);
+        }
     </script>
 </body>
 
